@@ -9,9 +9,9 @@ class Button(wx.Button) :
         estilos que se le indiquen.
         '''
         default_styles = {
-            'size' : (100,30),
+            'size' : (100,300),
             'bg_color' : None,
-            'fore_color' : 'white',
+            'fore_color' : 'white'
         }
 
         self.settings = default_styles.copy()
@@ -19,19 +19,43 @@ class Button(wx.Button) :
         if conf :
             self.settings.update(conf)
 
-        super().__init__(parent, label=label)
+        super().__init__(parent, label=label, size=self.settings['size'])
 
         #establecer estilos
-        self.setStyles()
+        self.set_styles()
 
-    def setStyles(self) :
+    #private
+    def set_styles(self, configuration=None) :
+        styles = {
+            'bg_color': 'SetBackgroundColour',
+            'fore_color': 'SetForegroundColour',
+        }
         '''
         Define todos los estilos del color usando settings una vez inicializado
         '''
-        self.SetBackgroundColour(self.settings['bg_color'])
-        self.SetForegroundColour(self.settings['fore_color'])
-        self.SetSize(self.settings['size'])
 
-    
+        conf = self.settings.copy()
 
-    
+        '''
+        Copiamos la configuración por default que viene del constructor.
+        Esto nos permite definir estilos personalizables a cada widget agregado.
+        '''
+
+        if configuration :
+            conf.update(configuration)
+
+        '''
+        Para no definir cada propiedad por separada, definimos un diccionarioq que contiene los métodos
+        del boton. Se mapea con .items() y obtenemos su key y el valor.
+        Almacenamos el valor de la configuración del boton y lo metemos dentro de una nueva variable con
+        getattr --> method = getattr(self, method_name) = self.SetBackgroundColour().
+        Después al método le pasamos el valor obtenido.
+        '''
+        for key, method_name in styles.items() :
+            value = conf.get(key)
+            if value is not None and value != 'size':
+                method = getattr(self, method_name)
+                method(value)
+
+        self.Layout()
+
