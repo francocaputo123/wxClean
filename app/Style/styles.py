@@ -1,12 +1,14 @@
 styles = {
+
     #colors
-    'color',
     'bg_color',
 
     #border
     'border',
     'radius',
+    'btn_border',
 
-    #hover
-    'none'
+    #text
+    'font_size',
+    'txt_color'
 }

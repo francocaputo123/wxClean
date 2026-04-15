@@ -9,14 +9,14 @@ class LoginPanel(wx.Panel) :
         #estilos
         styles = StyleSheet.StyleSheet({
             'btn1' : {
-                'border' : 0,
-                'bg_color': 'red'
+                'border' : 15,
+                'txt_color' : 'black',
+                'btn_border' : ['red', 1]
             },
             'btn2' : {
                 'radius' : 0
             }
         })
-
         #contenedor principal
         self.cont = wx.BoxSizer(wx.HORIZONTAL)
         self.was_pressed = 0
@@ -29,14 +29,14 @@ class LoginPanel(wx.Panel) :
 
         self.login_btn = Button.Button(self.main_sizer,'Boton de prueba', {'bg_color':'red', 'size': (100,40)})
         self.login_btn.Bind(wx.EVT_BUTTON, self.change_color)
-        self.test_btn = CustomButton.CustomButton(self.main_sizer, size=(200,40),label="Hola")
+        self.test_btn = CustomButton.CustomButton(self.main_sizer, size=(200,40),label="Hola", stylesheet=styles.btn1)
         self.ipt = Input.Input(self.main_sizer, placeholder="AAAAAAAA")
         self.register_two = Button.Button(self.second,'Boton de prueba', {'bg_color':'blue', 'size': (200,40)})
 
         #añadiendo widgets
         self.main_sizer.add_widget(self.login_btn)
         self.main_sizer.add_widget(self.ipt, {'proportion': 0, 'flags': wx.ALL | wx.CENTRE, 'border': 5})
-        self.main_sizer.add_widget(self.test_btn)
+        self.main_sizer.add_widget(self.test_btn, {'proportion': 0, 'flags': wx.ALL | wx.CENTRE, 'border': 5})
         self.second.add_widget(self.register_two)
 
         #definiendo los contenedores
