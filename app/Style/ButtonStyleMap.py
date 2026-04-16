@@ -11,11 +11,21 @@ class ButtonStyleMap :
         Serie de atributos permitidos
         '''
         self.allowed_styles = {
-            'border',
             'radius',
             'btn_border',
             'bg_color',
-            'txt_color'
+            'font_size',
+            'font_color',
+            'font_family',
+            'font_style',
+            'font_weight',
+            'underline',
+            'face_name',
+            'hover',
+            'hover_color',
+            'size',
+            'padding',
+            'text_align'
         }
 
         self.check_properties(self.styles_conf)

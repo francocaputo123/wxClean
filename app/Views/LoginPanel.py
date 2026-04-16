@@ -9,9 +9,12 @@ class LoginPanel(wx.Panel) :
         #estilos
         styles = StyleSheet.StyleSheet({
             'btn1' : {
-                'border' : 15,
-                'txt_color' : 'black',
-                'btn_border' : ['red', 1]
+                'radius' : 15,
+                'font_color' : 'black',
+                'font_size' : 20,
+                'bg_color' : 'red',
+                'size' : (200,50),
+                'hover_color' : 'blue',
             },
             'btn2' : {
                 'radius' : 0
@@ -29,7 +32,7 @@ class LoginPanel(wx.Panel) :
 
         self.login_btn = Button.Button(self.main_sizer,'Boton de prueba', {'bg_color':'red', 'size': (100,40)})
         self.login_btn.Bind(wx.EVT_BUTTON, self.change_color)
-        self.test_btn = CustomButton.CustomButton(self.main_sizer, size=(200,40),label="Hola", stylesheet=styles.btn1)
+        self.test_btn = CustomButton.CustomButton(self.main_sizer,label="Hola", stylesheet=styles.btn1)
         self.ipt = Input.Input(self.main_sizer, placeholder="AAAAAAAA")
         self.register_two = Button.Button(self.second,'Boton de prueba', {'bg_color':'blue', 'size': (200,40)})
 
