@@ -1,4 +1,4 @@
-from Style import styles as allowed_styles
+from Ui.Style import styles as allowed_styles
 
 class StyleSheet :
     def __init__(self, styles_conf : dict) :

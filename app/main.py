@@ -5,12 +5,11 @@ class Main :
     def __init__(self):
         app = wx.App()
 
-        frame = wx.Frame(None, title='Prueba', size=(1000,600))
-        login_panel = LoginPanel.LoginPanel(frame)
+        frame = wx.Frame(None, title='Prueba')
 
+        login_panel = LoginPanel.LoginPanel(frame)
         frame.Show()
 
         app.MainLoop()
-
 
 app = Main()

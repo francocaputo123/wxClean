@@ -1,8 +1,8 @@
 import wx
-from Style import ButtonStyleMap as BtnStyle
+from Ui.Style import ButtonStyleMap as BtnStyle
 
 class CustomButton(wx.Control) :
-    def __init__(self, parent, label="",stylesheet=None, pos=None) :
+    def __init__(self, parent, label="",stylesheet=None) :
         super().__init__(parent, style=wx.NO_BORDER)
 
         '''

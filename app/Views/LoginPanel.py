@@ -1,9 +1,9 @@
 import wx
-from Components import Button, Container, Input, CustomButton
-from Style import StyleSheet
+from Ui.Components import Button, Container, CustomButton, Input
+from Ui.Style import StyleSheet
 
 class LoginPanel(wx.Panel) :
-    def __init__(self, parent):
+    def __init__(self, parent, router):
         super().__init__(parent)
 
         #estilos
@@ -15,12 +15,14 @@ class LoginPanel(wx.Panel) :
                 'bg_color' : 'red',
                 'size' : (200,50),
                 'hover_color' : 'blue',
+                'btn_border' : ['blue', 1]
             },
             'btn2' : {
                 'radius' : 0
             }
         })
         #contenedor principal
+        self.router = router
         self.cont = wx.BoxSizer(wx.HORIZONTAL)
         self.was_pressed = 0
 
@@ -31,7 +33,6 @@ class LoginPanel(wx.Panel) :
         #definiendo componentes
 
         self.login_btn = Button.Button(self.main_sizer,'Boton de prueba', {'bg_color':'red', 'size': (100,40)})
-        self.login_btn.Bind(wx.EVT_BUTTON, self.change_color)
         self.test_btn = CustomButton.CustomButton(self.main_sizer,label="Hola", stylesheet=styles.btn1)
         self.ipt = Input.Input(self.main_sizer, placeholder="AAAAAAAA")
         self.register_two = Button.Button(self.second,'Boton de prueba', {'bg_color':'blue', 'size': (200,40)})
@@ -54,5 +55,6 @@ class LoginPanel(wx.Panel) :
             return
         self.login_btn.set_styles({'bg_color' : 'red'})
         self.was_pressed = 1
+
 
 
