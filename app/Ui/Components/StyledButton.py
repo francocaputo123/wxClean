@@ -1,9 +1,9 @@
 import wx
 from Ui.Style import ButtonStyleMap as BtnStyle
 
-class CustomButton(wx.Control) :
-    def __init__(self, parent, label="",stylesheet=None) :
-        super().__init__(parent, style=wx.NO_BORDER)
+class StyledButton(wx.Control) :
+    def __init__(self, parent, label="",stylesheet=None, id=wx.ID_ANY) :
+        super().__init__(parent, id=id,style=wx.NO_BORDER)
 
         '''
         Definiendo estilos. Si recibe por parámetros stylesheet,
@@ -33,6 +33,21 @@ class CustomButton(wx.Control) :
         self.Bind(wx.EVT_PAINT, self.on_paint)
         self.Bind(wx.EVT_ENTER_WINDOW, self.on_arrive)
         self.Bind(wx.EVT_LEAVE_WINDOW, self.on_leave)
+
+        #evento para presionar el boton
+        self.Bind(wx.EVT_LEFT_UP, self.on_release)
+
+    def on_release(self, event) :
+
+        #creamos un nuevo evento, en este caso un tipo evento de botón
+
+        btn_event = wx.CommandEvent(wx.wxEVT_BUTTON, self.GetId())
+
+        #se establece el evento al componente actual (este boton)
+        btn_event.SetEventObject(self)
+
+        #procesamos el evento para los padres superiores.
+        self.GetEventHandler().ProcessEvent(btn_event)
 
     def on_arrive(self, event) :
         self.state = 'hover'

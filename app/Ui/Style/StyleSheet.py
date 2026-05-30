@@ -10,8 +10,13 @@ class StyleSheet :
             setattr(self, key, styles_conf[key])
 
     def check_properties(self, styles) :
-        for key, value in styles.items() :
-            for key, value in value.items() :
-                if key not in allowed_styles.styles :
-                    raise AttributeError(f"The property {key} does not exist for class StyleSheet.")
+        properties = {prop for props in styles.values() for prop in props}
+
+        invalid = properties - set(allowed_styles.styles)
+
+        if invalid :
+            raise AttributeError(f"The property or properties {invalid} does not exist for class StyleSheet.")
+
+
+
 
